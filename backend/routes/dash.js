@@ -1,0 +1,35 @@
+const db = require('../db')
+const express = require('express')
+const router = express.Router()
+const {verifyToken,requireRole} = require('../middleware/authMiddleware')
+
+router.get('/staff',verifyToken,requireRole('ฝ่ายบุคลากร'),async (req,res) => {
+    try {
+        
+        const [[staff]] = await db.query(`select count(*)as total from tb_member where role ='ฝ่ายบุคลากร'`)
+        const [[eva]] = await db.query(`select count(*)as total from tb_member where role ='ผู้รับการประเมินผล'`)
+        const [[commit]] = await db.query(`select count(*)as total from tb_member where role ='กรรมการประเมิน'`)
+        const [[evaCount]] = await db.query(`select count(*)as total from tb_eva`)
+        const [[evaY]] = await db.query(`select count(*)as total from tb_eva where status_eva = 3`)
+        const [[evaN]] = await db.query(`select count(*)as total from tb_eva where status_eva != 3`)
+        res.json({
+            box:[
+                {title:'ฝ่ายบุคลากร',value:staff.total || 0},
+                {title:'ผู้รับการประเมินผล',value:eva.total || 0},
+                {title:'กรรมการประเมิน',value:commit.total || 0},
+            ],
+            box2:[
+                {title:'จำนวนแบบประเมิน',value:evaCount.total || 0},
+                {title:'จำนวนแบบประเมินที่สำเร็จ',value:evaCount.total > 0 ? `${(evaY.total * 100/evaCount.total).toFixed(2)}%`:'00.00%'},
+                {title:'จำนวนแบบประเมินที่ไม่สำเร็จ',value:evaCount.total > 0 ? `${(evaN.total * 100/evaCount.total).toFixed(2)}%`:'00.00%'},
+            ]
+        })
+
+    } catch (error) {
+        console.error('Erorr get box',error);
+        res.status(500).json({message:"Error get Box"})
+        
+    }
+})
+
+module.exports = router
