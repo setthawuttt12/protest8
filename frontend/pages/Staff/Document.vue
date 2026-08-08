@@ -38,18 +38,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(d,index) in result" :key="d.id_doc">
+                                <tr v-for="(items,index) in result" :key="items.id_doc">
                                     <td class="border text-center">{{ index+1 }}</td>
-                                    <td class="border text-center">{{ d.name_doc }}</td>
-                                    <td class="border text-center">{{ d.day_doc }}</td>
+                                    <td class="border text-center">{{ items.name_doc }}</td>
+                                    <td class="border text-center">{{ items.day_doc }}</td>
                                     <td class="border text-center">
                                         <center>
-                                            <v-btn size="small" color="warning" prepend-icon="mdi-eye" class="text-center text-white ma-2" @click="view(d.file)">เปิดดู</v-btn>
+                                            <v-btn size="small" color="warning" prepend-icon="mdi-eye" class="text-center text-white ma-2" @click="view(items.file)">เปิดดู</v-btn>
                                         </center>
                                     </td>
                                     <td class="border text-center">
                                         <center>
-                                            <v-btn size="small" color="error" class="text-center text-white ma-2" @click="del(d.id_doc)">ลบ</v-btn>
+                                            <v-btn size="small" color="error" class="text-center text-white ma-2" @click="del(items.id_doc)">ลบ</v-btn>
                                         </center>
                                     </td>
                                 </tr>
