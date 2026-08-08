@@ -17,7 +17,7 @@
                                 <v-col cols="12">
                                     {{ t+1 }}.{{ i+1 }} {{ indicate.name_indicate }} รายละเอียดตัวชี้วัด : {{ indicate.detail_indicate }} น้ำหนักคะแนน : {{ indicate.point_indicate }} คะแนนเต็ม : {{ indicate.point_indicate*4 }}
                                     <v-textarea name="" label="คำอธิบายเพิ่มเติม(ถ้ามี)"  v-model="indicate.detail_indicate" rows="2" id=""></v-textarea>
-                                    <v-file-input label="file *** รองรับเฉพาะไฟล์ .png .jpg .pdf *** " @change="onFileChange($event,topic.topic,indicate.id_indicate)" accept=".png,.jpg,.pdf"></v-file-input>
+                                    <v-file-input label="file *** รองรับเฉพาะไฟล์ .png .jpg .pdf *** " @change="onFileChange($event,topic.id_topic,indicate.id_indicate)" accept=".png,.jpg,.pdf"></v-file-input>
                                     <v-select v-if="indicate.check_indicate === 'y'" label="ใส่คะแนนประเมิน 1-4 " :items="[1,2,3,4]" v-model="indicate.score"></v-select>
                                     <v-text-field v-else label="ใส่คะแนนประเมิน 1-4 " @input="indicate.score > 4 ? indicate.score = 4 : null" type="number" v-model="indicate.score"></v-text-field>
                                 </v-col>
@@ -45,8 +45,8 @@ const topics =ref<any>([])
 const saveScore = async()=>{
     const token = localStorage.getItem('token')
     const formData = new FormData()
-    const allScore = topics.value.flatMap((t:any)=>
-        t.indicate.map((i:any)=>{
+    const allScore = topics.value.flatMap((t:any) =>
+        t.indicates.map((i:any) =>{
             const key = `${t.id_topic}-${i.id_indicate}`
             const file = fileMap.value[key]
             if(file)formData.append(`file_${key}`,file)
@@ -54,7 +54,7 @@ const saveScore = async()=>{
                 id_topic:t.id_topic,
                 id_indicate:i.id_indicate,
                 score:i.score,
-                detaile_eva:i.detail_eva,
+                detail_eva:i.detail_eva,
                 file_key:file ? `file_${key}` : null
             }
         })
