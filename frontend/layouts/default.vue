@@ -79,7 +79,7 @@ const roles = [
     {title:'คู่มือประกอบการประเมิน',to:'/Evaluatee/Doc',role:'ผู้รับการประเมินผล'},
 ]
 const bg = (role)=>{
-    if(role === 'ฝ่ายบุคลากร')return '#404040'
+    if(role === 'ฝ่ายบุคลากร')return '#647687'
     if(role === 'กรรมการประเมิน')return '#007FF'
     if(role === 'ผู้รับการประเมินผล')return '#7d0c14'
 }

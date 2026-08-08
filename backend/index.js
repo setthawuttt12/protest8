@@ -27,6 +27,14 @@ app.use('/api/profile',pf)
 const auth = require('./routes/auth')
 app.use('/api/auth',auth)
 
+//eva
+
+const edit = require('./routes/Eva/editeva')
+app.use('/api/Eva/editeva',edit)
+
+const selfeva = require('./routes/Eva/selfeva')
+app.use('/api/Eva/selfeva',selfeva)
+
 
 app.use((req,res)=> res.status(404).json({message:'Route not found'}))
 app.listen(3001,()=>{
