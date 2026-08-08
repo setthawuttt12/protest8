@@ -18,10 +18,13 @@ app.use('/uploads',express.static(path.join(__dirname,'./uploads')))
 app.use(fileUp())
 app.use(express.urlencoded({extended:true}))
 
+<<<<<<< HEAD
 const pf = require('./routes/profile')
 app.use('/api/profile',pf)
 
 
+=======
+>>>>>>> origin/main
 app.use((req,res)=> res.status(404).json({message:'Route not found'}))
 app.listen(3001,()=>{
 

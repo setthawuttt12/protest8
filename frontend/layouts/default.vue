@@ -1,5 +1,6 @@
 <template>
     <v-app>
+<<<<<<< HEAD
         <v-app-bar>
             <v-app-bar-nav-icon @click="drawer = !drawer"/>
             <v-toolbar-title>NTC EVALUATION SYSTEM</v-toolbar-title>
@@ -27,10 +28,18 @@
             </v-container>
             <v-footer class="text-caption justify-center">©2026 NTC EVALUATION SYSTEM</v-footer>
         </v-main>
+=======
+        <v-app-bar></v-app-bar>
+        <v-main>
+            <slot/>
+        </v-main>
+        <v-footer></v-footer>
+>>>>>>> origin/main
     </v-app>
 </template>
 
 <script setup lang="ts">
+<<<<<<< HEAD
 import axios from 'axios';
 import { useDisplay } from 'vuetify/lib/composables/display.mjs';
 import { api } from '~/API/base';
@@ -120,3 +129,11 @@ onMounted(fecth)
 
 
 
+=======
+
+</script>
+
+<style scoped>
+
+</style>
+>>>>>>> origin/main
