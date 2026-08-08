@@ -90,7 +90,7 @@ const fecth = async()=>{
         return await navigateTo('/',{replace:true})
     }
     try {
-        const res = await axios.get(`${api}/profile`)
+        const res = await axios.get(`${api}/profile/`)
         user.value = res.data
     } catch (error) {
         console.error('Error Get profile',error)
@@ -112,3 +112,11 @@ onMounted(fecth)
     }
 }
 </style>
+
+
+
+
+
+
+
+
