@@ -1,7 +1,6 @@
 <template>
     <v-app>
-<<<<<<< HEAD
-        <v-app-bar>
+        <v-app-bar :color="bg(user.role)" flat>
             <v-app-bar-nav-icon @click="drawer = !drawer"/>
             <v-toolbar-title>NTC EVALUATION SYSTEM</v-toolbar-title>
             <spacer/>
@@ -28,18 +27,10 @@
             </v-container>
             <v-footer class="text-caption justify-center">©2026 NTC EVALUATION SYSTEM</v-footer>
         </v-main>
-=======
-        <v-app-bar></v-app-bar>
-        <v-main>
-            <slot/>
-        </v-main>
-        <v-footer></v-footer>
->>>>>>> origin/main
     </v-app>
 </template>
 
 <script setup lang="ts">
-<<<<<<< HEAD
 import axios from 'axios';
 import { useDisplay } from 'vuetify/lib/composables/display.mjs';
 import { api } from '~/API/base';
@@ -87,11 +78,11 @@ const roles = [
     {title:'รายงานผลการประเมิน',to:'/Evaluatee/Report_eva',role:'ผู้รับการประเมินผล'},
     {title:'คู่มือประกอบการประเมิน',to:'/Evaluatee/Doc',role:'ผู้รับการประเมินผล'},
 ]
-// const bg = (role)=>{
-//     if(role === 'ฝ่ายบุคลากร')return '#404040'
-//     if(role === 'กรรมการประเมิน')return '#007FF'
-//     if(role === 'ผู้รับการประเมินผล')return '#7d0c14'
-// }
+const bg = (role)=>{
+    if(role === 'ฝ่ายบุคลากร')return '#404040'
+    if(role === 'กรรมการประเมิน')return '#007FF'
+    if(role === 'ผู้รับการประเมินผล')return '#7d0c14'
+}
 
 const fecth = async()=>{
     const token = localStorage.getItem('token')
@@ -99,7 +90,7 @@ const fecth = async()=>{
         return await navigateTo('/',{replace:true})
     }
     try {
-        const res = await axios.get(`${api}/profile/`)
+        const res = await axios.get(`${api}/profile/`,{headers:{Authorization:`Bearer ${token}`}})
         user.value = res.data
     } catch (error) {
         console.error('Error Get profile',error)
@@ -129,11 +120,3 @@ onMounted(fecth)
 
 
 
-=======
-
-</script>
-
-<style scoped>
-
-</style>
->>>>>>> origin/main

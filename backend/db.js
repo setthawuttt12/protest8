@@ -1,19 +1,14 @@
-const mysql2 = require('mysql')
+const mysql2 = require('mysql2')
 const db = mysql2.createConnection(
     {
-        
+
         host:'localhost',
-        port:'3307',
+        // port:'3307',
         user:'root',
         password:'1234',
-<<<<<<< HEAD
         database:'water'
 
     }
-) 
-=======
-        database:'protest8'
-
-    }
 )
->>>>>>> origin/main
+module.exports = db.promise()
+
